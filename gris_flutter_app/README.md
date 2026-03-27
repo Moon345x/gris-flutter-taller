@@ -22,3 +22,9 @@ flutter run
 - ⏳ Feature UI levels
 - ⏳ Pruebas & deploy
 
+## 📖 Historia GRIS
+1. **Inicio**: Estatua madre se rompe, Gris cae muda.
+2. **Rojo/Ira**: Desierto molinos, crea bloques.
+3. **Verde**: Bosque, salto doble.
+4. **Azul**: Agua, enfrenta monstruo depresión.
+5. **Amarillo**: Ciudad, vuela y canta.
