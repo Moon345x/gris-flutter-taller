@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'level_detail_screen.dart';  // ← NUEVO import
 
 class LevelsScreen extends StatelessWidget {
   const LevelsScreen({super.key});
@@ -13,44 +14,33 @@ class LevelsScreen extends StatelessWidget {
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
-        children: const [
-          LevelCard(
-            color: Colors.red,
-            title: '1. Ira (Rojo)',
-            description: 'Desierto con molinos gigantes. Primer poder: bloques de piedra.',
-          ),
-          LevelCard(
-            color: Colors.green,
-            title: '2. Negociación (Verde)',
-            description: 'Bosque exuberante. Salto doble y crecimiento.',
-          ),
-          LevelCard(
-            color: Colors.blue,
-            title: '3. Depresión (Azul)',
-            description: 'Caverna submarina. Monstruo negro y aceptación.',
-          ),
-          LevelCard(
-            color: Colors.yellow,
-            title: '4. Aceptación (Amarillo)',
-            description: 'Ciudad de luz. Canto final restaura el mundo.',
-          ),
+        children: [
+          // ← CAMBIO: generate con onTap
+          ...List.generate(4, (index) => LevelCard(
+            colorIndex: index,
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => LevelDetailScreen(levelIndex: index)),
+            ),
+          )),
         ],
       ),
     );
   }
 }
 
+// ← LevelCard TOTALMENTE NUEVA (reemplaza la vieja)
 class LevelCard extends StatelessWidget {
-  final Color color;
-  final String title;
-  final String description;
+  final int colorIndex;
+  final VoidCallback onTap;
 
   const LevelCard({
     super.key,
-    required this.color,
-    required this.title,
-    required this.description,
+    required this.colorIndex,
+    required this.onTap,
   });
+
+  Color get color => [Colors.red, Colors.green, Colors.blue, Colors.yellow][colorIndex];
 
   @override
   Widget build(BuildContext context) {
@@ -58,9 +48,10 @@ class LevelCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 16),
       color: color.withOpacity(0.2),
       child: ListTile(
-        leading: CircleAvatar(backgroundColor: color, child: const Icon(Icons.star, color: Colors.white)),
-        title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Text(description),
+        onTap: onTap,  // ← CLICKABLE ahora
+        leading: CircleAvatar(backgroundColor: color, child: Text('${colorIndex + 1}', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold))),
+        title: Text(['Ira Rojo', 'Negociación Verde', 'Depresión Azul', 'Aceptación Amarillo'][colorIndex], style: const TextStyle(fontWeight: FontWeight.bold)),
+        subtitle: Text(['Desierto molinos', 'Bosque salto', 'Caverna monstruo', 'Ciudad canto'][colorIndex]),
         trailing: const Icon(Icons.arrow_forward_ios),
       ),
     );

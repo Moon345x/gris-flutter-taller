@@ -1,30 +1,58 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:gris_workshop/screens/level_detail_screen.dart';
+class LevelsScreen extends StatelessWidget {
+  const LevelsScreen({super.key});
 
-import 'package:gris_flutter_app/main.dart';
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Etapas de GRIS'),
+        backgroundColor: Colors.grey[800],
+        foregroundColor: Colors.white,
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          // ← CAMBIO: generate con onTap
+          ...List.generate(4, (index) => LevelCard(
+            colorIndex: index,
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => LevelDetailScreen(levelIndex: index)),
+            ),
+          )),
+        ],
+      ),
+    );
+  }
+}
 
-void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+// ← LevelCard TOTALMENTE NUEVA (reemplaza la vieja)
+class LevelCard extends StatelessWidget {
+  final int colorIndex;
+  final VoidCallback onTap;
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  const LevelCard({
+    super.key,
+    required this.colorIndex,
+    required this.onTap,
   });
+
+  Color get color => [Colors.red, Colors.green, Colors.blue, Colors.yellow][colorIndex];
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.only(bottom: 16),
+      color: color.withOpacity(0.2),
+      child: ListTile(
+        onTap: onTap,  // ← CLICKABLE ahora
+        leading: CircleAvatar(backgroundColor: color, child: Text('${colorIndex + 1}', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold))),
+        title: Text(['Ira Rojo', 'Negociación Verde', 'Depresión Azul', 'Aceptación Amarillo'][colorIndex], style: const TextStyle(fontWeight: FontWeight.bold)),
+        subtitle: Text(['Desierto molinos', 'Bosque salto', 'Caverna monstruo', 'Ciudad canto'][colorIndex]),
+        trailing: const Icon(Icons.arrow_forward_ios),
+      ),
+    );
+  }
 }
