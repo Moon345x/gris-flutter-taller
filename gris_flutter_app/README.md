@@ -1,17 +1,24 @@
-# gris_flutter_app
+# GRIS Flutter taller
 
-A new Flutter project.
+App Flutter que narra la historia del juego **GRIS** de Nomada Studio. Gris despierta en la estatua rota de su madre, pierde la voz y explora un mundo gris recuperando colores y emociones: rojo (ira), verde (crecimiento), azul (depresión), amarillo (aceptación) [web:12].
 
-## Getting Started
+## 🚀 Instalación
+```bash
+git clone https://github.com/Moon345x/gris-flutter-taller
+cd gris-workshop
+flutter pub get
+flutter run
+```
 
-This project is a starting point for a Flutter application.
+## 🎯 Objetivos Taller
+- Flujo Git: main → develop → feature → pruebas
+- UI interactiva por etapas GRIS
+- Pruebas unitarias/integration
+- Documentación completa (PDF/Readme)
 
-A few resources to get you started if this is your first Flutter project:
+## 📱 Estado
+- ✅ Setup inicial Flutter
+- ⏳ Develop base (historia)
+- ⏳ Feature UI levels
+- ⏳ Pruebas & deploy
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
