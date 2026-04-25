@@ -50,7 +50,7 @@ class LevelCard extends StatelessWidget {
       child: ListTile(
         onTap: onTap,  // ← CLICKABLE ahora
         leading: CircleAvatar(backgroundColor: color, child: Text('${colorIndex + 1}', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold))),
-        title: Text(['Ira Rojo', 'Negociación Verde', 'Depresión Azul', 'Aceptación Amarillo'][colorIndex], style: const TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(['Ira Rojo', 'Negacion Verde', 'Depresión Azul', 'Aceptación Amarillo'][colorIndex], style: const TextStyle(fontWeight: FontWeight.bold)),
         subtitle: Text(['Desierto molinos', 'Bosque salto', 'Caverna monstruo', 'Ciudad canto'][colorIndex]),
         trailing: const Icon(Icons.arrow_forward_ios),
       ),
